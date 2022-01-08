@@ -1,0 +1,174 @@
+#
+from tkinter import *
+import tkinter.messagebox
+
+
+root=Tk()
+root.title("Currency Convator")
+root.geometry("600x520+300+100")
+root.iconbitmap(r"icon.ico")
+manubar=Menu(root)
+
+def reset():
+    re=tkinter.messagebox.askyesno("Reset","Do you want to reset")
+    if re>0:
+        amount.set("")
+        result.set("")
+        var.set(False)
+        infolabel['text']="Reset Completed"
+
+def exit():
+    iexit=tkinter.messagebox.askyesno("Currency Converter","Do you want to Exit")
+    if iexit > 0 :
+        root.destroy()
+
+def about_it():
+    tkinter.messagebox.showinfo("About This Software",'It is made by Foysal Ahmmed with python')
+
+root.config(menu=manubar)
+
+subMenu=Menu(manubar,tearoff=0)
+manubar.add_cascade(label="File",men=subMenu)
+subMenu.add_command(label="Reset",command=reset)
+subMenu.add_command(label="Exit",command=exit)
+
+
+subMenu=Menu(manubar,tearoff=0)
+manubar.add_cascade(label="Help",men=subMenu)
+subMenu.add_command(label="About it",command=about_it)
+#all variable================
+var=IntVar()
+amount=StringVar()
+result=StringVar()
+#==================All Frame==========
+
+frame1=Frame(root,background="#34495e",bd=2)
+frame1.place(x=0,y=0,height=500,width=150)
+
+frame2=Frame(root,background="#2c3e50")
+frame2.place(x=150,y=0,height=500,width=450)
+
+framec=Frame(frame1,bg="white")
+framec.place(x=0,y=30,height=208,width=200)
+
+#Input label============================
+enterlabel=Label(frame2,text="Enter The Amount",bd=10,fg="#2d3436",bg="#b2bec3",font=("Comic Sans MS",12,"bold"))
+enterlabel.place(x=50,y=100)
+
+entry=Entry(frame2,bd=10,bg="#b2bec3",textvariable=amount,font=("Comic Sans MS",12,"bold"))
+entry.place(x=215,y=100)
+
+resultlabel=Label(frame2,text="Result In taka(৳)",bd=10,fg="#2d3436",bg="#b2bec3",font=("Comic Sans MS",12,"bold"))
+resultlabel.place(x=50,y=200,width=250)
+resultshow=Entry(frame2,bd=10,bg="#b2bec3",textvariable=result,font=("Comic Sans MS",20,"bold"))
+resultshow.place(x=50,y=250,width=250)
+
+
+
+
+
+title=Label(frame2,text="Currancey Convator",bg="#95a5a6",font=("Comic Sans MS",15,"bold"),anchor=E)
+title.pack(fill=X)
+
+#All image=================
+di=PhotoImage(file="doller.png")
+ri=PhotoImage(file="rupee.png")
+ei=PhotoImage(file="euro.png")
+dei=PhotoImage(file="dirham.png")
+rii=PhotoImage(file="riyal.png")
+yi=PhotoImage(file="chinese Yuan.png")
+ji=PhotoImage(file='japan.png')
+
+#All Image input===========
+
+dollerle=Label(framec,image=di)
+dollerle.grid(row=0,column=0)
+
+eurole=Label(framec,image=ei)
+eurole.grid(row=1,column=0)
+
+rupeele=Label(framec,image=ri)
+rupeele.grid(row=2,column=0)
+
+dirhamle=Label(framec,image=dei)
+dirhamle.grid(row=3,column=0)
+
+riyale=Label(framec,image=ri)
+riyale.grid(row=4,column=0)
+
+chinale=Label(framec,image=yi)
+chinale.grid(row=5,column=0)
+
+japanle=Label(framec,image=ji)
+japanle.grid(row=6,column=0)
+
+#all button===========================
+r1=Radiobutton(framec,text="Doller           ",bg='slategray',variable=var,value=1,font=("Tahoma",12,"bold")).grid(row=0,column=1,sticky=W)
+r2 = Radiobutton(framec, text="Euro             ", bg='slategray',variable=var,value=2, font=("Tahoma", 12, "bold")).grid(row=1,column=1,sticky=W)
+r3 = Radiobutton(framec, text="Rupee          ", bg='slategray',variable=var,value=3, font=("Tahoma", 12, "bold")).grid(row=2,column=1,sticky=W)
+r4 = Radiobutton(framec, text="Dirham             ", bg='slategray',variable=var,value=4, font=("Tahoma", 12, "bold")).grid(row=3,column=1,sticky=W)
+r5 = Radiobutton(framec, text="Riyal             ", bg='slategray',variable=var,value=5, font=("Tahoma", 12, "bold")).grid(row=4,column=1,sticky=W)
+r6 = Radiobutton(framec, text="Chinese Yuan             ", bg='slategray',variable=var,value=6, font=("Tahoma", 11, "bold")).grid(row=5,column=1,sticky=W)
+r7 = Radiobutton(framec, text="Japan Yan             ", bg='slategray',variable=var,value=7, font=("Tahoma", 11, "bold")).grid(row=6,column=1,sticky=W)
+
+#all function ================
+def convert():
+        try:
+            if var.get()==1 :
+                a=float(amount.get())
+                r=a*84.89
+                result.set(r)
+                infolabel['text']='Converted Doller to Taka'
+            elif var.get() == 2:
+                a = float(amount.get())
+                r = a * 91.73
+                result.set(r)
+                infolabel['text']='Converted Euro to Taka'
+            elif var.get() == 3:
+                a = float(amount.get())
+                r = a * 1.11
+                result.set(r)
+                infolabel['text']='Converted Rupee to Taka'
+            elif var.get() == 4:
+                a = float(amount.get())
+                r = a * 23.11
+                result.set(r)
+                infolabel['text']='Converted Driham to Taka'
+            elif var.get() == 5:
+                a = float(amount.get())
+                r = a * 22.59
+                result.set(r)
+                infolabel['text']='Converted Riyal to Taka'
+            elif var.get() == 6:
+                a = float(amount.get())
+                r = a * 12.05
+                result.set(r)
+                infolabel['text']='Converted Chinese Yuan to Taka'
+            elif var.get() == 7:
+                a = float(amount.get())
+                r = a * .78
+                result.set(r)
+                infolabel['text']='Converted Japan Yan to Taka'
+            elif var.get()==False :
+                tkinter.messagebox.showerror("Dont Find Option ","Please Select Currency Option")
+
+
+        except :
+            tkinter.messagebox.showerror("Dont Find Amount ", "Please,Enter Amount")
+
+
+
+#design image input
+
+photo=PhotoImage(file="money.png")
+bi=Button(root,image=photo,border=0,bg="#2c3e50",command=convert)
+bi.place(x=500,y=400)
+convertlabel=Label(root,text="Convert",bg="#2c3e50",fg="#2980b9",font=("Comic Sans MS",18,"bold"))
+convertlabel.place(x=400,y=420,height=50,width=90)
+
+infolabel=Label(frame2,relief=GROOVE,bd=3,bg="#1abc9c",anchor=W,text="Welcome To Foysal's Software",font=("Tahoma",10,"bold"))
+infolabel.pack(side=BOTTOM,fill=X)
+
+
+
+root.mainloop()
